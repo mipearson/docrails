@@ -138,7 +138,8 @@ module RailsGuides
 
         if guide =~ /\.html\.erb$/
           # Generate the special pages like the home.
-          result = view.render(:layout => 'layout_kindle', :file => guide)
+          # Passing a template handler in the template name is deprecated. So pass the file name without the extension.
+          result = view.render(:layout => 'layout_kindle', :file => $`)
         else
           body = File.read(File.join(source_dir, guide))
           body = set_header_section(body, view)

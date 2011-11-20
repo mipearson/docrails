@@ -1,4 +1,5 @@
 require 'active_support/core_ext/array/wrap'
+require 'active_support/deprecation/reporting'
 
 module ActiveRecord
   module ConnectionAdapters # :nodoc:
@@ -154,11 +155,11 @@ module ActiveRecord
       #  )
       #
       # See also TableDefinition#column for details on how to create columns.
-      def create_table(table_name, options = {}, &blk)
+      def create_table(table_name, options = {})
         td = table_definition
         td.primary_key(options[:primary_key] || Base.get_primary_key(table_name.to_s.singularize)) unless options[:id] == false
 
-        td.instance_eval(&blk) if blk
+        yield td if block_given?
 
         if options[:force] && table_exists?(table_name)
           drop_table(table_name)
@@ -434,6 +435,7 @@ module ActiveRecord
           si_table = Base.table_name_prefix + 'schema_info' + Base.table_name_suffix
 
           if table_exists?(si_table)
+            ActiveRecord::Deprecation.warn "Usage of the schema table `#{si_table}` is deprecated. Please switch to using `schema_migrations` table"
 
             old_version = select_value("SELECT version FROM #{quote_table_name(si_table)}").to_i
             assume_migrated_upto_version(old_version)

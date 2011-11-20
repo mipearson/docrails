@@ -389,11 +389,11 @@ module ActiveRecord
           sql = "SHOW TABLES"
         end
 
-        select_all(sql).map do |table|
+        select_all(sql).map { |table|
           table.delete('Table_type')
           sql = "SHOW CREATE TABLE #{quote_table_name(table.to_a.first.last)}"
           exec_without_stmt(sql).first['Create Table'] + ";\n\n"
-        end.join("")
+        }.join
       end
 
       # Drops the database specified on the +name+ attribute
@@ -576,6 +576,13 @@ module ActiveRecord
 
       # Returns a table's primary key and belonging sequence.
       def pk_and_sequence_for(table)
+        execute_and_free("DESCRIBE #{quote_table_name(table)}", 'SCHEMA') do |result|
+          keys = each_hash(result).select { |row| row[:Key] == 'PRI' }.map { |row| row[:Field] }
+          keys.length == 1 ? [keys.first, nil] : nil
+        end
+      end
+
+      def detailed_pk_and_sequence_for(table)
         sql = <<-SQL
           SELECT t.constraint_type, k.column_name
           FROM information_schema.table_constraints t
