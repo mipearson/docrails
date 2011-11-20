@@ -11,6 +11,10 @@ module RailsGuides
       result << content_tag(:dd, capture(&block))
       result
     end
+    
+    def outline
+      YAML.load(File.read(File.expand_path('../outline.yaml', __FILE__)))
+    end
 
     def author(name, nick, image = 'credits_pic_blank.gif', &block)
       image = "images/#{image}"
