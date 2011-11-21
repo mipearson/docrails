@@ -23,7 +23,7 @@
     <item id="<%= document['url'] %>" media-type="text/html" href="<%= document['url'] %>" />
   <% end %>
   
-  <% %w{toc_kindle.html welcome_kindle.html copyright_kindle.html}.each do |url| %>
+  <% %w{toc_kindle.html credits.html welcome_kindle.html copyright_kindle.html}.each do |url| %>
     <item id="<%= url %>" media-type="text/html" href="<%= url %>" />
   <% end %>
   
@@ -38,6 +38,7 @@
   <% documents_flat.each do |document| %>
     <itemref idref="<%= document['url'] %>" />
   <% end %>
+  <itemref idref="credits.html" />
   <itemref idref="copyright_kindle.html" />
 </spine>
 
