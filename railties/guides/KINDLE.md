@@ -3,8 +3,9 @@
 ## Synopsis
 
   1. Obtain `kindlegen` from the link below and put the binary in your path
-  2. Run `ruby rails_guides.rb` to generate the guides and .mobi files
-  3. Copy the .mobi files you wish to read to your Kindle
+  2. Run `ruby rails_guides.rb` to generate the guides
+  3. Run `kindlegen output/guides.opf` to generate `output/guides.mobi`
+  3. Copy `output/guides.mobi` to your Kindle
   
 ## Resources
 
