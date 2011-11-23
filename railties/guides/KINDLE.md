@@ -16,7 +16,6 @@
 
 ### Minimum Viable Product
 
-  * Embed a cover image, as per the Kindle guidelines
   * Remove hacks from `rails_guides/generator.rb`, have Kindle generation as an option on `rails_guides.rb` instead.
   * Ensure sidebar / footnotes are rendered correctly
   
