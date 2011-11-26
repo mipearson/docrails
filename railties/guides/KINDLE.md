@@ -14,12 +14,7 @@
   
 ## TODO
 
-### Minimum Viable Product
-
-  * Ensure sidebar / footnotes are rendered correctly
-  
-### Post release
-
+  * Add special styles for tips & warnings
   * Integrate generated Kindle document in to published HTML guides
   * Tweak heading styles (most docs use h3/h4/h5, which end up being smaller than the text under it)
   * Tweak table styles (smaller text? Many of the tables are unusable on a Kindle in portrait mode)
