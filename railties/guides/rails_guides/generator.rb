@@ -61,10 +61,6 @@ require 'rails_guides/indexer'
 require 'rails_guides/helpers'
 require 'rails_guides/levenshtein'
 
-#XXX
-Mime::Type.register_alias "application/xml", :opf, %w(opf)
-Mime::Type.register_alias "application/xml", :ncx ,%w(ncx)
-
 module RailsGuides
   class Generator
     attr_reader :guides_dir, :source_dir, :output_dir, :edge, :warnings, :all
@@ -75,9 +71,15 @@ module RailsGuides
       @lang = ENV['GUIDES_LANGUAGE']
       @kindle = ENV['KINDLE']
       check_for_kindlegen if kindle?
+      register_kindle_mime_types if kindle?
       initialize_dirs(output)
       create_output_dir_if_needed
       set_flags_from_environment
+    end
+    
+    def register_kindle_mime_types
+      Mime::Type.register_alias "application/xml", :opf, %w(opf)
+      Mime::Type.register_alias "application/xml", :ncx ,%w(ncx)
     end
 
     def kindle?
