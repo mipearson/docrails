@@ -4,8 +4,8 @@
 
   1. Obtain `kindlegen` from the link below and put the binary in your path
   2. Run `KINDLE=1 ruby rails_guides.rb` to generate the guides
-  3. Run `kindlegen output/rails_guides.opf` to generate `output/rails_guides.mobi`
-  3. Copy `output/rails_guides.mobi` to your Kindle
+  3. Run `kindlegen output/kindle/rails_guides.opf` to generate `output/rails_guides.mobi`
+  3. Copy `output/kindle/rails_guides.mobi` to your Kindle
   
 ## Resources
 
