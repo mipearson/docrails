@@ -450,6 +450,12 @@ start a web server on your development machine. You can do this by running:
 $ rails server
 </shell>
 
+TIP: Some environments require that you install a JavaScript runtime to compile
+CoffeeScript to JavaScript and will give you an +execjs+ error the first time
+you run +rails server+. +therubyracer+ and +therubyrhino+ are commonly used
+runtimes for Ruby and JRuby respectively. You can also investigate a list
+of runtimes at "ExecJS":https://github.com/sstephenson/execjs.
+
 This will fire up an instance of the WEBrick web server by default (Rails can
 also use several other web servers). To see your application in action, open a
 browser window and navigate to "http://localhost:3000":http://localhost:3000.
